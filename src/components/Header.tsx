@@ -1,9 +1,10 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import bitsi from '../bitsi.jpg';
 
 interface HeaderProps {
-  onNavigate: (page: 'home' | 'members' | 'career') => void;
-  currentPage: 'home' | 'members' | 'career';
+  onNavigate: (page: 'home' | 'members' | 'career' | 'about' | 'contact') => void;
+  currentPage: 'home' | 'members' | 'career' | 'about' | 'contact';
 }
 
 export default function Header({ onNavigate, currentPage }: HeaderProps) {
@@ -17,7 +18,7 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
     }
   };
 
-  const handleNavigation = (page: 'home' | 'members' | 'career') => {
+  const handleNavigation = (page: 'home' | 'members' | 'career' | 'about' | 'contact') => {
     onNavigate(page);
     setIsMenuOpen(false);
   };
@@ -27,13 +28,25 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex justify-between items-center">
           <button onClick={() => handleNavigation('home')} className="flex items-center space-x-3 hover:opacity-80 transition">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
+            {/* <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-cyan-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-xl">B</span>
-            </div>
-            <div>
+            </div> */}
+            {/* <div>
               <h1 className="text-2xl font-bold text-gray-800">BITSI</h1>
               <p className="text-xs text-gray-600">Bhagawati IT Services & Investment</p>
-            </div>
+            </div> */}
+            <div className="flex items-center space-x-2">
+ <img 
+  src={bitsi}
+  alt="BITSI Logo"
+  className="w-10 h-10 object-contain"
+/>
+  {/* <div>
+    <h1 className="text-2xl font-bold text-gray-800">BITSI</h1>
+    <p className="text-xs text-gray-600">Bhagawati IT Services & Investment</p>
+  </div> */}
+</div>
+
           </button>
 
           <div className="hidden md:flex space-x-8">
@@ -44,14 +57,14 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
               Home
             </button>
             <button
-              onClick={() => scrollToSection('services')}
+              onClick={() => currentPage === 'home' ? scrollToSection('services') : handleNavigation('home')}
               className="text-gray-700 hover:text-blue-600 transition"
             >
               Services
             </button>
             <button
-              onClick={() => scrollToSection('about')}
-              className="text-gray-700 hover:text-blue-600 transition"
+              onClick={() => handleNavigation('about')}
+              className={`transition ${currentPage === 'about' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
             >
               About
             </button>
@@ -67,7 +80,10 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
             >
               Careers
             </button>
-            <button onClick={() => scrollToSection('contact')} className="text-gray-700 hover:text-blue-600 transition">
+            <button
+              onClick={() => handleNavigation('contact')}
+              className={`transition ${currentPage === 'contact' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
+            >
               Contact
             </button>
           </div>
@@ -88,10 +104,13 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
             >
               Home
             </button>
-            <button onClick={() => scrollToSection('services')} className="block text-gray-700 hover:text-blue-600 transition">
+            <button onClick={() => currentPage === 'home' ? scrollToSection('services') : handleNavigation('home')} className="block text-gray-700 hover:text-blue-600 transition">
               Services
             </button>
-            <button onClick={() => scrollToSection('about')} className="block text-gray-700 hover:text-blue-600 transition">
+            <button
+              onClick={() => handleNavigation('about')}
+              className={`block transition ${currentPage === 'about' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
+            >
               About
             </button>
             <button
@@ -106,7 +125,10 @@ export default function Header({ onNavigate, currentPage }: HeaderProps) {
             >
               Careers
             </button>
-            <button onClick={() => scrollToSection('contact')} className="block text-gray-700 hover:text-blue-600 transition">
+            <button
+              onClick={() => handleNavigation('contact')}
+              className={`block transition ${currentPage === 'contact' ? 'text-blue-600 font-semibold' : 'text-gray-700 hover:text-blue-600'}`}
+            >
               Contact
             </button>
           </div>

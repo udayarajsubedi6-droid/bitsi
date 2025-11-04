@@ -98,7 +98,7 @@ export default function Members() {
           </p>
         </div>
 
-        <div className="mb-12 flex flex-wrap justify-center gap-3">
+        {/* <div className="mb-12 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => setSelectedMember(null)}
             className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
@@ -113,7 +113,7 @@ export default function Members() {
               {dept}
             </button>
           ))}
-        </div>
+        </div> */}
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
           {teamMembers.map((member) => (

@@ -8,7 +8,7 @@ import Footer from './components/Footer';
 import Members from './components/Members';
 import Career from './components/Career';
 
-type PageType = 'home' | 'members' | 'career';
+type PageType = 'home' | 'members' | 'career' | 'about' | 'contact';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<PageType>('home');
@@ -24,12 +24,12 @@ function App() {
 
       {currentPage === 'home' && (
         <>
-          <Hero />
+          <Hero onNavigate={navigateTo} />
           <Services />
-          <About />
-          <Contact />
         </>
       )}
+      {currentPage === 'about' && <About />}
+      {currentPage === 'contact' && <Contact />}
       {currentPage === 'members' && <Members />}
       {currentPage === 'career' && <Career />}
 

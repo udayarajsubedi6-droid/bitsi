@@ -32,7 +32,7 @@ const values = [
 
 export default function About() {
   return (
-    <section id="about" className="py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section className="pt-24 pb-20 bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">About BITSI</h2>
