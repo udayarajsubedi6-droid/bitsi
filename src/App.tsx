@@ -1,40 +1,43 @@
-import { useState } from 'react';
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
 import About from './components/About';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
 import Members from './components/Members';
 import Career from './components/Career';
-
-type PageType = 'home' | 'members' | 'career' | 'about' | 'contact';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<PageType>('home');
-
-  const navigateTo = (page: PageType) => {
-    setCurrentPage(page);
-    window.scrollTo(0, 0);
-  };
+  const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen">
-      <Header onNavigate={navigateTo} currentPage={currentPage} />
+    <>
+      <ScrollToTop />
+      <div className="min-h-screen bg-gray-100">
+        <Header />
 
-      {currentPage === 'home' && (
-        <>
-          <Hero onNavigate={navigateTo} />
-          <Services />
-        </>
-      )}
-      {currentPage === 'about' && <About />}
-      {currentPage === 'contact' && <Contact />}
-      {currentPage === 'members' && <Members />}
-      {currentPage === 'career' && <Career />}
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Hero onNavigate={(page) => navigate(`/${page}`)} />
+                <Services />
+              </>
+            }
+          />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/members" element={<Members />} />
+          <Route path="/career" element={<Career />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
 
-      <Footer onNavigate={navigateTo} />
-    </div>
+        <Footer onNavigate={(page) => navigate(`/${page}`)} />
+      </div>
+    </>
   );
 }
 
